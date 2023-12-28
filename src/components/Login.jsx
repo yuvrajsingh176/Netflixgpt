@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateCurre
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { logo } from "../utils/constants";
 const Login = () => {
     const navigate = useNavigate();
 
@@ -32,7 +33,7 @@ const name=useRef(null)
 
                     updateProfile(user, {
                         displayName: name.current.value,
-                        photoURL:"https://avatars.githubusercontent.com/u/74402961?v=4"
+                        photoURL:{logo}
                     }).then(() => {
                         const { uid, email, displayName, photoURL } = auth.currentUser;
                         dispatch(addUser({
@@ -41,10 +42,9 @@ const name=useRef(null)
                             displayName: displayName,
                             photoURL:photoURL
 }))
-    navigate('/browse')
                     })
                         .catch(err => {
-                        navigate('/error')
+                            console.log(err)
                     })
                 })
                 .catch(e => {
@@ -63,14 +63,14 @@ navigate('/')
                     console.log(user)
                     //we could do the dispatch thing here or in sign up but insted doing mul
                     //multiple times we will do it in root  
-navigate('/browse')
                
                 })
                 .catch(e => {
                     const errorCode = e.code;
                     const errmsg = e.message;
                     setErrmsg(errmsg)
-navigate('/')
+                    console.log(err)
+
            
                 })
         }
