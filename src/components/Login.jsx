@@ -1,15 +1,81 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
-import { useState } from "react";
-
+import { useRef, useState } from "react";
+import{checkValidateData} from '../utils/validate'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateCurrentUser, updateProfile } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 const Login = () => {
+    const navigate = useNavigate();
 
+    const [errmsg, setErrmsg] = useState(null);
 const [signinstate,setsigninstate]=useState(true)
-
+    const email = useRef(null);
+    const password = useRef(null);
+const name=useRef(null)
     const signupHandler = (e) => {
         e.preventDefault();
     setsigninstate(!signinstate)
-}
+    }
+    const dispatch = useDispatch();
+    const handleButtonClick = () => {
+        const message = checkValidateData(email.current.value, password.current.value)
+        setErrmsg(message)
+        if (message) return;
+
+        if (!signinstate) {
+            //sign up
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredentials) => {
+                    const user = userCredentials.user;
+
+                    updateProfile(user, {
+                        displayName: name.current.value,
+                        photoURL:"https://avatars.githubusercontent.com/u/74402961?v=4"
+                    }).then(() => {
+                        const { uid, email, displayName, photoURL } = auth.currentUser;
+                        dispatch(addUser({
+                            uid: uid,
+                            email: email,
+                            displayName: displayName,
+                            photoURL:photoURL
+}))
+    navigate('/browse')
+                    })
+                        .catch(err => {
+                        navigate('/error')
+                    })
+                })
+                .catch(e => {
+                    const errorCode = e.code;
+                    const errmsg = e.message;
+                    setErrmsg(errmsg)
+navigate('/')
+
+            })
+        }
+        else {
+            //sign uin
+            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredentials) => {
+                    const user = userCredentials.user;
+                    console.log(user)
+                    //we could do the dispatch thing here or in sign up but insted doing mul
+                    //multiple times we will do it in root  
+navigate('/browse')
+               
+                })
+                .catch(e => {
+                    const errorCode = e.code;
+                    const errmsg = e.message;
+                    setErrmsg(errmsg)
+navigate('/')
+           
+                })
+        }
+
+    }
     return (
     <div>
       <Header />
@@ -19,7 +85,9 @@ const [signinstate,setsigninstate]=useState(true)
           src="https://assets.nflxext.com/ffe/siteui/vlv3/563192ea-ac0e-4906-a865-ba9899ffafad/6b2842d1-2339-4f08-84f6-148e9fcbe01b/IN-en-20231218-popsignuptwoweeks-perspective_alpha_website_large.jpg"
         />
       </div>
-      <form className="rounded-lg   relative top-32 h-[580px] w-4/12 mx-auto bg-[rgba(0,0,0,.75)]" action="">
+            <form onSubmit={(e) => {
+                e.preventDefault();
+      }} className="rounded-lg   relative top-32 h-[580px] w-4/12 mx-auto bg-[rgba(0,0,0,.75)]" action="">
        
               <div className="flex flex-col items-center pt-8">
               
@@ -37,7 +105,7 @@ const [signinstate,setsigninstate]=useState(true)
           type="text"
           placeholder="Name"
           className="pt-4 pr-5 pb-2 pl-5 w-full bg-gray-700  text-white h-[50px] leading-6 outline-none  rounded-sm"
-         
+         ref={name}
                       />
                   </div>
                     }
@@ -48,7 +116,7 @@ const [signinstate,setsigninstate]=useState(true)
           type="text"
           placeholder="Email Address"
           className="pt-4 pr-5 pb-2 pl-5 w-full bg-gray-700  text-white h-[50px] leading-6 outline-none  rounded-sm"
-         
+         ref={email}
                       />
                   </div>
                   <div className="pt-8 w-8/12 flex items-center">
@@ -57,11 +125,13 @@ const [signinstate,setsigninstate]=useState(true)
           type="password"
           placeholder="Password"
           className="pt-4  pb-2 pl-5 w-full bg-gray-700   text-white h-[50px] leading-6 outline-none  rounded-sm"
-
+ref={password}
                       />
-                  </div>          
+                    </div>   
+                  
+                    <p className="text-red-600 pt-2 font-bold">{ errmsg}</p>
                   <div className="pt-14 w-8/12">
-                      <button className="pt-6 pr-5 pb-6 pl-6  rounded-md bg-[#e50914] w-full flex align-middle justify-center">
+                      <button onClick={handleButtonClick} className="pt-6 pr-5 pb-6 pl-6  rounded-md bg-[#e50914] w-full flex align-middle justify-center">
                           <h1 className="text-white text-2xl font-medium ">
                           Sign {signinstate?" in ":" up "}    
                           </h1>
@@ -80,9 +150,15 @@ const [signinstate,setsigninstate]=useState(true)
 
                   <h4 className="text-white w-8/12 pt-6 text-xl">
                       <span className="text-[#737373]"></span>
-                      <button onClick={signupHandler}>
+                      <button >
                             {
-                                signinstate?"New to Netflix? Sign up now.":"Already registered? Sign in now"
+                                <p onClick={signupHandler}>
+                                    {
+                                        signinstate?"New to Netflix? Sign up now.":"Already registered? Sign in now"
+
+                                    }
+                                    
+                                </p>
                 }
                       </button>
                   </h4>

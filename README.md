@@ -16,6 +16,8 @@ Currently, two official plugins are available:
 # Features
 -login and signup
  -formic for form validation
+ -useref hook
+ -create signup user
 -redirect to browse page
 -Browse
 (after auth)
@@ -31,7 +33,20 @@ Currently, two official plugins are available:
  -movie suggestions
 
 
+# fetch from tmdb
 
 
 
+# sign up sign in
+ -first we created the auth config in firebase js
+ -then we made a validator 
+ -then we went to login page and used the api to get the data
+ -pushing the data to redux store
+ -created redux store and user
 
+# creating redux store
+ -we create appStore.js
+ -we then create configure store 
+ -we then create a slice
+ -we then import that slicein appstore
+ -we then wrap the root with provider and privide store there
