@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateCurre
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { logo } from "../utils/constants";
+import { backgroundimg, logo } from "../utils/constants";
 const Login = () => {
     const navigate = useNavigate();
 
@@ -82,7 +82,7 @@ navigate('/')
       <div className="absolute">
         <img
           alt="logo"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/563192ea-ac0e-4906-a865-ba9899ffafad/6b2842d1-2339-4f08-84f6-148e9fcbe01b/IN-en-20231218-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={backgroundimg}
         />
       </div>
             <form onSubmit={(e) => {

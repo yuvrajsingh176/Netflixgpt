@@ -2,7 +2,6 @@ import MovieList from "./MovieList";
 import {useSelector} from 'react-redux'
 const SecondryContainer = () => {
     const movies = useSelector(store => store.movies)
-    console.log(movies)
     return (
         
         movies && 
