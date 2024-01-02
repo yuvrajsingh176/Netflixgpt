@@ -79,8 +79,8 @@ navigate('/')
     return (
     <div>
       <Header />
-      <div className="absolute h-screen">
-        <img className="h-screen object-cover"
+      <div className="absolute object-cover  w-full h-full">
+        <img className=" object-cover"
           alt="logo"
           src={backgroundimg}
         />
