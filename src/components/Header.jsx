@@ -46,9 +46,9 @@ const Header = () => {
   };
   return (
     <div className="z-10 flex flex-col md:flex-row justify-between absolute w-screen  px-8 py-2 bg-gradient-to-b from-black  ">
-      <img className="w-44  mx-auto md:mx-0" src={netflixlogo} alt="netflix logo" />
+      <img className= " w-24 md:w-44  mx-auto md:mx-0" src={netflixlogo} alt="netflix logo" />
       {user ? (
-        <div className="flex p-2">
+        <div className="flex justify-between p-2">
           <select
             onChange={handleselectedChange}
             className="bg-purple-700 text-white rounded-lg md:p-2 md:m-2"
@@ -61,7 +61,7 @@ const Header = () => {
           </select>
 
           <button
-            className="bg-purple-700 rounded-md text-white md:p-3 md:m-2 m-0 align-middle "
+            className="bg-purple-700 rounded-md text-white md:p-3 md:m-2  align-middle "
             onClick={handleGptclick}
           >
             {
@@ -69,7 +69,7 @@ const Header = () => {
          }
           </button>
           <img
-            className="w-12 h-12 rounded-md mt-2"
+            className="hidden md:inline-block w-12 h-12 rounded-md mt-2"
             src={user?.photoURL}
             alt="default user"
           />
