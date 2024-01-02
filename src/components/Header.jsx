@@ -19,6 +19,7 @@ const Header = () => {
   const handleGptclick = () => {
     dispatch(toggleGptSearchView());
   };
+  const curlang=useSelector(store=>store.config.lang)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -64,7 +65,7 @@ const Header = () => {
             onClick={handleGptclick}
           >
             {
-              searchbar ? "Homepage" : "GPT search"
+              searchbar ? "Homepage" : "GPT " + lang[curlang].search
          }
           </button>
           <img

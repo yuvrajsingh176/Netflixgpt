@@ -1,17 +1,30 @@
+import { combineSlices } from '@reduxjs/toolkit'
 import MovieCard from './MovieCard'
-const MovieList = ({title,movies}) => {
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { movieId } from '../utils/movieDetalsSlice';
 
-    return (<div className='px-6 '>
+const MovieList = ({title,movies}) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const cardHandler = (id) => {
+        dispatch(movieId(id));
+navigate('/details')        
+    }
+    return (<div className='px-6 overflow-hidden'>
         <h1 className='text-4xl py-4 text-white'>{title}</h1>
         
-        <div className='flex overflow-x-scroll scrollbar-hidden'>
+        <div className='flex overflow-auto'>
             <div className='flex'>
          
           
                         {
                             movies?.map((movie) => (
-                        <MovieCard key={movie.id} posterPath={movie.poster_path} /> 
-                                
+                                <button onClick={() => {
+                                    cardHandler(movie.id)
+                      }}>
+                                <MovieCard key={movie.id} posterPath={movie.poster_path} /> 
+                                </button>    
                             ))
                         }
     
