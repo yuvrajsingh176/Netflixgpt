@@ -8,7 +8,7 @@ const SecondryContainer = () => {
         
         movies && 
         <div className=" bg-black">
-                <div className="-mt-40 relative z-20">
+                <div className="mt-0 md:-mt-40 relative z-20">
                 
             <MovieList title={lang[curlangage].nowplaying} movies={movies.nowPlayingMovies} />
             <MovieList title={lang[curlangage].trending} movies={movies.popularMovies} />

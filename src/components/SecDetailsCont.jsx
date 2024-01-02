@@ -5,7 +5,7 @@ import { casts, createMovieInfo } from "../utils/movieDetalsSlice";
 
 const SecDetailsCont = ({id}) => {
     const url = `https://api.themoviedb.org/3/movie/${id}`;
-const dispatch=useDispatch()
+    const dispatch = useDispatch()
     const fetchInfo = async() => {
         const data =await fetch(url, API_OPTIONS);
         const json = await data.json();
@@ -13,7 +13,6 @@ const dispatch=useDispatch()
         const imdburl = `https://imdb-api.com/en/API/FullCast/${IMDB_APIKEY}/${json?.imdb_id}`
         const castdata = await fetch(imdburl);
         const castjson = await castdata.json();
-dispatch(casts(castjson))
 dispatch(createMovieInfo(json))
     }
     useEffect(() => {

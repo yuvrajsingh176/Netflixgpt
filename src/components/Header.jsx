@@ -45,13 +45,13 @@ const Header = () => {
       });
   };
   return (
-    <div className="z-10 flex justify-between absolute w-screen  px-8 py-2 bg-gradient-to-b from-black ">
-      <img className="w-44" src={netflixlogo} alt="netflix logo" />
+    <div className="z-10 flex flex-col md:flex-row justify-between absolute w-screen  px-8 py-2 bg-gradient-to-b from-black  ">
+      <img className="w-44  mx-auto md:mx-0" src={netflixlogo} alt="netflix logo" />
       {user ? (
         <div className="flex p-2">
           <select
             onChange={handleselectedChange}
-            className="bg-purple-700 text-white rounded-lg p-2 m-2"
+            className="bg-purple-700 text-white rounded-lg md:p-2 md:m-2"
           >
               {    supported_lang.map((lang) => (
               <option key={lang.identifier} value={lang.identifier}>
@@ -61,7 +61,7 @@ const Header = () => {
           </select>
 
           <button
-            className="bg-purple-700 rounded-md text-white p-3 m-2 align-middle "
+            className="bg-purple-700 rounded-md text-white md:p-3 md:m-2 m-0 align-middle "
             onClick={handleGptclick}
           >
             {

@@ -7,6 +7,8 @@ const useMovieVideos = (id) => {
    
     const URL=`https://api.themoviedb.org/3/movie/${id}/videos`
     const dispatch = useDispatch();
+    const trialer = useSelector(store => store.movies.trailerVideo);
+
     const fetchMovieVideos = async () => {
         const data =await fetch(URL, API_OPTIONS);
         const json = await data.json();
@@ -16,7 +18,7 @@ const useMovieVideos = (id) => {
         dispatch(addTrailer(trailer));
     }
     useEffect(() => {
-        fetchMovieVideos();
+      !trialer && fetchMovieVideos();
 },[])
 
 }

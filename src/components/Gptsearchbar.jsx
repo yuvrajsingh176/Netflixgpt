@@ -40,8 +40,8 @@ const Gptsearchbar = () => {
         dispatch(addGptmovies(moviesfetched));
    }
 
-    return <div className="pt-[10%] ">
-        <form onSubmit={(e)=>e.preventDefault()} className=" w-1/2 bg-black grid grid-cols-12  mx-auto">
+    return <div className="md:pt-[10%]  pt-[40%] ">
+        <form onSubmit={(e)=>e.preventDefault()} className="w-full md:w-1/2 bg-black grid grid-cols-12  mx-auto">
             <input onChange={(e) => {
                 setst(e.target.value)
             }}  type="text" className="p-4 m-4 col-span-9" placeholder={lang[curlangage].gptplaceholder} />

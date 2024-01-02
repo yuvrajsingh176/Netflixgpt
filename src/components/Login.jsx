@@ -79,15 +79,15 @@ navigate('/')
     return (
     <div>
       <Header />
-      <div className="absolute">
-        <img
+      <div className="absolute h-screen">
+        <img className="h-screen object-cover"
           alt="logo"
           src={backgroundimg}
         />
       </div>
             <form onSubmit={(e) => {
                 e.preventDefault();
-      }} className="rounded-lg   relative top-32 h-[580px] w-4/12 mx-auto bg-[rgba(0,0,0,.75)]" action="">
+      }} className="rounded-lg   relative top-32 h-[580px] w-full md:w-4/12 mx-auto bg-[rgba(0,0,0,.75)]" action="">
        
               <div className="flex flex-col items-center pt-8">
               

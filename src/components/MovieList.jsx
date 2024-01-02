@@ -12,7 +12,7 @@ const MovieList = ({title,movies}) => {
 navigate('/details')        
     }
     return (<div className='px-6 overflow-hidden'>
-        <h1 className='text-4xl py-4 text-white'>{title}</h1>
+        <h1 className='text-2xl md:text-4xl py-4 text-white'>{title}</h1>
         
         <div className='flex overflow-auto'>
             <div className='flex'>
