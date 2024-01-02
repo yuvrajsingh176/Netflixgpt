@@ -18,7 +18,7 @@ const MainDetailsContainer = ({ id }) => {
     }, [])
     const trailerId = useSelector(store => store.details.movieDetails?.key)
     return (
-        <div className=" ">
+        <div className="">
             <div className="w-screen ">
             <iframe 
             className="w-screen aspect-video"

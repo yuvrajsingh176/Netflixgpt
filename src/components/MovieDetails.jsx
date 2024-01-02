@@ -10,8 +10,8 @@ const id=useSelector(store=>store.details.id)
 
     
     return (
-        <div className="bg-black ">
-            <div className="mx-4 pt-2">
+        <div className="bg-black w-full">
+            <div className="pt-2 w-full">
             <MainDetailsContainer id={ id} />
             <SecDetailsCont id={ id} />
             </div>
