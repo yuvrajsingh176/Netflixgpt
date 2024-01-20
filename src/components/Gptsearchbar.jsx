@@ -26,14 +26,12 @@ const Gptsearchbar = () => {
    
    
     const handleSearch = async () => {
-        console.log(Query)
 
         const gptResults= await openai.chat.completions.create({
             messages: [{ role: 'user', content:Query  }],
             model: 'gpt-3.5-turbo',
           });
         const movies = gptResults.choices?.[0]?.message?.content.split(",");
-        console.log(movies)
         dispatch(addmoviesNames(movies))
         const promisedata = movies.map((movie) => fetchFromtmdb(movie));
         const moviesfetched = await Promise.all(promisedata);

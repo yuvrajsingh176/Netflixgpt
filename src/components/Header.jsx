@@ -35,7 +35,6 @@ const Header = () => {
   }, []);
     const handleselectedChange = (e) => {
       dispatch(changeLanuage(e.target.value))
-        // console.log(e.target.value)
   };
   const handleSignout = () => {
     signOut(auth)
@@ -68,11 +67,7 @@ const Header = () => {
               searchbar ? "Homepage" : "GPT " + lang[curlang].search
          }
           </button>
-          <img
-            className="hidden md:inline-block w-12 h-12 rounded-md mt-2"
-            src={user?.photoURL}
-            alt="default user"
-          />
+         
           <button onClick={handleSignout}>
             <h1 className="text-white font-bold ">Sign out</h1>
           </button>

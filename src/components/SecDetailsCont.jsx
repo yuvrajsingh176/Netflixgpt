@@ -9,17 +9,12 @@ const SecDetailsCont = ({id}) => {
     const fetchInfo = async() => {
         const data =await fetch(url, API_OPTIONS);
         const json = await data.json();
-        console.log(json)
-        const imdburl = `https://imdb-api.com/en/API/FullCast/${IMDB_APIKEY}/${json?.imdb_id}`
-        const castdata = await fetch(imdburl);
-        const castjson = await castdata.json();
 dispatch(createMovieInfo(json))
     }
     useEffect(() => {
         fetchInfo()
     },[])
     const movieInfo = useSelector(store => store.details?.movieInfo);
-
 
     return (
         <div className="mt-4 flex justify-center items-center "> 

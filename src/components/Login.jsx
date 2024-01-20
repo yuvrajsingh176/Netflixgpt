@@ -60,7 +60,6 @@ navigate('/')
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredentials) => {
                     const user = userCredentials.user;
-                    console.log(user)
                     //we could do the dispatch thing here or in sign up but insted doing mul
                     //multiple times we will do it in root  
                
