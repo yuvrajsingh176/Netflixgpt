@@ -97,12 +97,12 @@ const Login = () => {
           src={backgroundimg}
         />
       </div>
-      <div className="flex relative items-center justify-center h-full ">
+      <div className="flex absolute  h-full w-full md:justify-center  top-14">
         <form
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="flex w-1/2 flex-col items-center p-8 rounded-lg bg-[rgba(0,0,0,.75)]"
+          className="flex w-full md:w-1/2  h-2/3  flex-col items-center p-8 rounded-lg "
         >
           <h4 className="text-white text-4xl font-medium mb-8">
             {signinstate ? "Sign In" : "Sign Up"}
@@ -123,7 +123,7 @@ const Login = () => {
             <input
               type="text"
               placeholder="Email Address"
-              className="pt-4 pr-5 pb-2 pl-5 w-full bg-gray-700  text-white h-[50px] leading-6 outline-none  rounded-sm"
+              className="py-2 pr-5 pl-5 w-full bg-gray-700  text-white h-[50px] leading-6 outline-none  rounded-lg"
               ref={email}
             />
           </div>
@@ -131,7 +131,7 @@ const Login = () => {
             <input
               type="password"
               placeholder="Password"
-              className="pt-4  pb-2 pl-5 w-full bg-gray-700   text-white h-[50px] leading-6 outline-none  rounded-sm"
+              className="py-2 pl-5 w-full bg-gray-700   text-white h-[50px] leading-6 outline-none  rounded-lg"
               ref={password}
             />
           </div>
@@ -140,7 +140,7 @@ const Login = () => {
           <div className="w-8/12 mb-6">
             <button
               onClick={handleButtonClick}
-              className="pt-6 pr-5 pb-6 pl-6  rounded-md bg-[#e50914] w-full flex align-middle justify-center"
+              className="py-4 pr-5  pl-6  rounded-lg bg-[#e50914] w-full flex align-middle justify-center"
             >
               <h1 className="text-white text-2xl font-medium">
                 Sign {signinstate ? "in" : "up"}
@@ -149,7 +149,7 @@ const Login = () => {
           </div>
 
           <div className="flex w-8/12 items-stretch text-white mb-4 justify-between">
-            <label htmlFor="">
+            <label htmlFor="" className="items-center flex justify-center">
               <input type="checkbox" className="h-5 mr-1 w-5" />
               Remember me
             </label>

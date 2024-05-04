@@ -39,10 +39,10 @@ const Gptsearchbar = () => {
    }
 
     return <div className="md:pt-[10%]  pt-[40%] ">
-        <form onSubmit={(e)=>e.preventDefault()} className="w-full md:w-1/2 bg-black grid grid-cols-12  mx-auto">
-            <input onChange={(e) => {
+        <form onSubmit={(e)=>e.preventDefault()} className="w-full rounded-xl md:w-1/2 bg-black grid grid-cols-12  mx-auto">
+            <input  onChange={(e) => {
                 setst(e.target.value)
-            }}  type="text" className="p-4 m-4 col-span-9" placeholder={lang[curlangage].gptplaceholder} />
+            }}  type="text" className="p-4 m-4 col-span-9 rounded-xl" placeholder={lang[curlangage].gptplaceholder} />
             <button   onClick={handleSearch} className="py-2 col-span-3 m-4  px-4 bg-red-800 text-white rounded-xl"> {lang[curlangage].search}</button>
         </form>
     </div>
