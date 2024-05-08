@@ -13,7 +13,7 @@ const Gptmoviesuggestion = () => {
             Search Results:{gptmovienames.join(",")}
             </h1></div>
             <div>
-                {gptmovies.length===0 && <div>loading...</div>}
+                {gptmovies?.length===0 && <div className="text-black">loading...</div>}
             </div>
             <div>
                 {gptmovies?.map((Moviename,index) => (
